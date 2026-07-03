@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Probabilistic Survival Analysis for Predictive Maintenance
 
 This project applies survival analysis to estimate time-to-failure risk in industrial assets.
@@ -83,3 +84,7 @@ Run the transformation smoke test:
 ```bash
 make smoke-test
 ```
+=======
+# probabilistic-survival-analysis
+Probabilistic Survival Analysis for Predictive Maintenance
+>>>>>>> 62a930eb98a34c23d2492713f189cb5ae0b7fb64
