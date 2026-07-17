@@ -51,14 +51,16 @@ This is exactly the type of analysis that a binary classifier would not express
 as clearly. A classifier could estimate whether failure is likely, but the
 survival model shows how risk evolves over time.
 
-## Next Step
+## Subsequent Work
 
-The next step is to replace the synthetic dataset with a real benchmark dataset,
-preferably NASA C-MAPSS, and define a defensible transformation into survival
-format:
+The subsequent phases replaced the synthetic proof of concept with NASA C-MAPSS FD001
+and defined a defensible transformation into survival format:
 
 - entity identifier
 - duration
 - event indicator
 - covariates
 - censoring logic
+
+The completed case now includes a landmark Kaplan-Meier baseline, a diagnosed Cox
+model, and held-out comparison with Random Survival Forest and gradient boosting.

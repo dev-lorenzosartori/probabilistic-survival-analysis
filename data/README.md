@@ -1,18 +1,14 @@
-# Data
+# Data contract
 
-This folder is reserved for local datasets.
+The project uses NASA's C-MAPSS FD001 turbofan benchmark. Raw source files are excluded;
+compact derived tables needed to reproduce the published analysis are committed.
 
-Raw datasets should not be committed if they are large or license-restricted.
+Place `train_FD001.txt`, `test_FD001.txt`, and `RUL_FD001.txt` under
+`data/raw/cmapss/`, then run `make cmapss` to rebuild the processed tables.
 
-Planned structure:
+- `cmapss_fd001_survival_table_full.csv`: audit layer with censoring metadata.
+- `cmapss_fd001_landmark30_modeling_table.csv`: one eligible engine per row at cycle 30.
+- `synthetic_asset_survival.csv`: synthetic Phase-1 proof of concept.
 
-- `raw/`: original downloaded files
-- `interim/`: intermediate transformed files
-- `processed/`: final modeling tables
-
-The main modeling table should contain at least:
-
-- `entity_id`: asset or customer identifier
-- `duration`: observed time until event or censoring
-- `event_observed`: 1 if event occurred, 0 if censored
-- covariates used by the survival model
+`true_rul` and `true_event_time` are never used for fitting. They are revealed only for
+external evaluation of the untouched official NASA test units.

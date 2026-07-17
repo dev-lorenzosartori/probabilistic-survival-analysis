@@ -1,10 +1,7 @@
-"""Minimal, dependency-free Kaplan-Meier + log-rank implementation.
+"""Auditable Kaplan-Meier estimator and two-group log-rank test.
 
-No internet access is available in this environment to install `lifelines`,
-so this implements the product-limit estimator (Kaplan-Meier), Greenwood's
-variance formula for confidence intervals, and the Mantel-Haenszel log-rank
-test from first principles. Validated against hand-computed toy examples
-below before being used on real data.
+Implements the product-limit estimator, Greenwood variance and Mantel-Haenszel
+log-rank statistic, protected by hand-computed examples below.
 """
 from __future__ import annotations
 import numpy as np

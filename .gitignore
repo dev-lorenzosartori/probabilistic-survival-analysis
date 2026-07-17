@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.DS_Store
+models/*.joblib
+data/raw/cmapss/*.txt
+data/interim/
+
