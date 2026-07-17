@@ -68,7 +68,7 @@ threshold rule, is the right next step.
 
 23 engineered covariates (mostly the three operating-condition settings and sensors
 1, 5, 6, 10, 16, 18, 19) were flagged as near-zero variance in FD001 and excluded from
-this screening and from the planned Cox model.
+this screening and from the downstream Cox model.
 
 ## Exploratory Risk Groups
 
@@ -82,28 +82,24 @@ readings is statistically significant at the 5% level. This is a first, honest p
 evidence that the first 30 cycles carry real prognostic information -- exactly the
 question the landmark framing was designed to answer.
 
-## What This Baseline Does Not Yet Show
+## Scope of This Baseline
 
-- No adjustment for multiple covariates simultaneously (Phase 4, Cox model).
-- No proportional-hazards assumption check yet.
-- No formal calibration or concordance metric yet.
+- This phase does not adjust for multiple covariates simultaneously; Phase 4 adds the Cox model.
+- The proportional-hazards diagnostics are reported in Phase 4.
+- Formal discrimination, calibration, and model comparisons are reported in Phase 5.
 - The tercile split is exploratory, not a proposed decision rule.
 
-## Next Step
+## Subsequent Work
 
-Phase 4: fit a Cox proportional hazards model on the landmark-30 modeling table using
-the non-low-variance covariates, check the proportional hazards assumption per
-covariate, and report hazard ratios with confidence intervals.
+Phase 4 fit and diagnosed the Cox proportional hazards model. Phase 5 then evaluated
+Cox, Random Survival Forest, and gradient boosting survival models on the held-out NASA
+test engines.
 
 ## Implementation Note
 
-Kaplan-Meier and the log-rank test were implemented from first principles in this
-session (product-limit estimator with Greenwood's variance, Mantel-Haenszel log-rank),
-because the execution sandbox used for this analysis has no internet access to install
-`lifelines`. The implementation was validated against hand-computed toy examples
-(no-censoring case, censored case, identical-groups and clearly-different-groups
-log-rank tests) before being applied to the real data. For the actual notebook and
-published artifact, re-run this analysis with `lifelines` (already in
-`requirements.txt`) as the library of record -- it is more thoroughly tested, faster,
-and gives access to additional diagnostics (e.g. Nelson-Aalen, Fleming-Harrington CIs)
-that are out of scope for a from-scratch implementation.
+Kaplan-Meier and the log-rank test are implemented from first principles in
+`src/km_utils.py` (product-limit estimator with Greenwood's variance and a
+Mantel-Haenszel log-rank test). The implementation is covered by no-censoring,
+censoring, identical-group, and clearly-separated-group test cases before being applied
+to FD001. The repository keeps this implementation to make the statistical mechanics
+auditable; `lifelines` remains available as the reference library for extensions.
